@@ -5,6 +5,8 @@
  */
 package smartstockcontrolsystem;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -33,6 +36,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Items.findByMinrequireditem", query = "SELECT i FROM Items i WHERE i.minrequireditem = :minrequireditem"),
     @NamedQuery(name = "Items.findByStaffcheck", query = "SELECT i FROM Items i WHERE i.staffcheck = :staffcheck")})
 public class Items implements Serializable {
+
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,7 +73,9 @@ public class Items implements Serializable {
     }
 
     public void setId(Integer id) {
+        Integer oldId = this.id;
         this.id = id;
+        changeSupport.firePropertyChange("id", oldId, id);
     }
 
     public String getItemcode() {
@@ -75,7 +83,9 @@ public class Items implements Serializable {
     }
 
     public void setItemcode(String itemcode) {
+        String oldItemcode = this.itemcode;
         this.itemcode = itemcode;
+        changeSupport.firePropertyChange("itemcode", oldItemcode, itemcode);
     }
 
     public String getItemname() {
@@ -83,7 +93,9 @@ public class Items implements Serializable {
     }
 
     public void setItemname(String itemname) {
+        String oldItemname = this.itemname;
         this.itemname = itemname;
+        changeSupport.firePropertyChange("itemname", oldItemname, itemname);
     }
 
     public String getItemprice() {
@@ -91,7 +103,9 @@ public class Items implements Serializable {
     }
 
     public void setItemprice(String itemprice) {
+        String oldItemprice = this.itemprice;
         this.itemprice = itemprice;
+        changeSupport.firePropertyChange("itemprice", oldItemprice, itemprice);
     }
 
     public String getItemquantity() {
@@ -99,7 +113,9 @@ public class Items implements Serializable {
     }
 
     public void setItemquantity(String itemquantity) {
+        String oldItemquantity = this.itemquantity;
         this.itemquantity = itemquantity;
+        changeSupport.firePropertyChange("itemquantity", oldItemquantity, itemquantity);
     }
 
     public String getStockarrivaldate() {
@@ -107,7 +123,9 @@ public class Items implements Serializable {
     }
 
     public void setStockarrivaldate(String stockarrivaldate) {
+        String oldStockarrivaldate = this.stockarrivaldate;
         this.stockarrivaldate = stockarrivaldate;
+        changeSupport.firePropertyChange("stockarrivaldate", oldStockarrivaldate, stockarrivaldate);
     }
 
     public String getMinrequireditem() {
@@ -115,7 +133,9 @@ public class Items implements Serializable {
     }
 
     public void setMinrequireditem(String minrequireditem) {
+        String oldMinrequireditem = this.minrequireditem;
         this.minrequireditem = minrequireditem;
+        changeSupport.firePropertyChange("minrequireditem", oldMinrequireditem, minrequireditem);
     }
 
     public String getStaffcheck() {
@@ -123,7 +143,9 @@ public class Items implements Serializable {
     }
 
     public void setStaffcheck(String staffcheck) {
+        String oldStaffcheck = this.staffcheck;
         this.staffcheck = staffcheck;
+        changeSupport.firePropertyChange("staffcheck", oldStaffcheck, staffcheck);
     }
 
     @Override
@@ -149,6 +171,14 @@ public class Items implements Serializable {
     @Override
     public String toString() {
         return "smartstockcontrolsystem.Items[ id=" + id + " ]";
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
