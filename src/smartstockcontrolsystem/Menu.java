@@ -44,6 +44,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         stockAssisstant.setText("Stock Assisstant");
+        stockAssisstant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stockAssisstantActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Welcome to  Smart Stock!");
 
@@ -90,6 +95,12 @@ public class Menu extends javax.swing.JFrame {
         ManagerWindow mw = new ManagerWindow();
         mw.setVisible(true);
     }//GEN-LAST:event_managerButtonActionPerformed
+
+    private void stockAssisstantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockAssisstantActionPerformed
+        this.setVisible(true);
+        InputStock inputStock = new InputStock();
+        inputStock.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_stockAssisstantActionPerformed
 
     /**
      * @param args the command line arguments
