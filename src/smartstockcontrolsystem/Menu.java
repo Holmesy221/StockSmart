@@ -98,8 +98,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void stockAssisstantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockAssisstantActionPerformed
         this.setVisible(true);
-        InputStock inputStock = new InputStock();
-        inputStock.setVisible(true);        // TODO add your handling code here:
+        StockAssistantWindow stockAssistant = new StockAssistantWindow();
+        stockAssistant.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_stockAssisstantActionPerformed
 
     /**
