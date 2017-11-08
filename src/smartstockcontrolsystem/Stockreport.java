@@ -5,6 +5,8 @@
  */
 package smartstockcontrolsystem;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -31,6 +34,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Stockreport.findByTotalsold", query = "SELECT s FROM Stockreport s WHERE s.totalsold = :totalsold"),
     @NamedQuery(name = "Stockreport.findByTotalleft", query = "SELECT s FROM Stockreport s WHERE s.totalleft = :totalleft")})
 public class Stockreport implements Serializable {
+
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,7 +67,9 @@ public class Stockreport implements Serializable {
     }
 
     public void setId(Integer id) {
+        Integer oldId = this.id;
         this.id = id;
+        changeSupport.firePropertyChange("id", oldId, id);
     }
 
     public String getItemcode() {
@@ -69,7 +77,9 @@ public class Stockreport implements Serializable {
     }
 
     public void setItemcode(String itemcode) {
+        String oldItemcode = this.itemcode;
         this.itemcode = itemcode;
+        changeSupport.firePropertyChange("itemcode", oldItemcode, itemcode);
     }
 
     public String getItemname() {
@@ -77,7 +87,9 @@ public class Stockreport implements Serializable {
     }
 
     public void setItemname(String itemname) {
+        String oldItemname = this.itemname;
         this.itemname = itemname;
+        changeSupport.firePropertyChange("itemname", oldItemname, itemname);
     }
 
     public String getTotalstocked() {
@@ -85,7 +97,9 @@ public class Stockreport implements Serializable {
     }
 
     public void setTotalstocked(String totalstocked) {
+        String oldTotalstocked = this.totalstocked;
         this.totalstocked = totalstocked;
+        changeSupport.firePropertyChange("totalstocked", oldTotalstocked, totalstocked);
     }
 
     public String getTotalsold() {
@@ -93,7 +107,9 @@ public class Stockreport implements Serializable {
     }
 
     public void setTotalsold(String totalsold) {
+        String oldTotalsold = this.totalsold;
         this.totalsold = totalsold;
+        changeSupport.firePropertyChange("totalsold", oldTotalsold, totalsold);
     }
 
     public String getTotalleft() {
@@ -101,7 +117,9 @@ public class Stockreport implements Serializable {
     }
 
     public void setTotalleft(String totalleft) {
+        String oldTotalleft = this.totalleft;
         this.totalleft = totalleft;
+        changeSupport.firePropertyChange("totalleft", oldTotalleft, totalleft);
     }
 
     @Override
@@ -127,6 +145,14 @@ public class Stockreport implements Serializable {
     @Override
     public String toString() {
         return "smartstockcontrolsystem.Stockreport[ id=" + id + " ]";
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
