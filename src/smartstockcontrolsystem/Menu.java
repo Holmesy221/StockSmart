@@ -91,13 +91,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void managerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(true);
+        this.setVisible(false);
         ManagerWindow mw = new ManagerWindow();
         mw.setVisible(true);
     }//GEN-LAST:event_managerButtonActionPerformed
 
     private void stockAssisstantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockAssisstantActionPerformed
-        this.setVisible(true);
+        this.setVisible(false);
         StockAssistantWindow stockAssistant = new StockAssistantWindow();
         stockAssistant.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_stockAssisstantActionPerformed
