@@ -104,7 +104,7 @@ public class StockAssistantWindow extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(true);
+        this.setVisible(false);
         InputStock inputStock = new InputStock();
         inputStock.setVisible(true);   
     }//GEN-LAST:event_jToggleButton1ActionPerformed
